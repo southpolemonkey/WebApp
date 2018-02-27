@@ -7,14 +7,22 @@
       {% endif %}
     </head>
     <body>
-        <div>
+      <!-- 分块 -->
+        <div> 
           Microblog: 
+          <!-- a: 超链接 href: 超链接地址 -->
           <a href="{{ url_for('index') }}">Home</a>
-          <a href="{{ url_for('login')}}">Login</a>
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('login') }}">Login</a>
+          {% else %}
+          <a href="{{ url_for('logout') }}">Logout</a>
+          {% endif %}
         </div>
-        <hr>
+        <!-- 水平分割线 -->
+        <hr/>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
+        <!-- 无序列表 -->
         <ul>
             {% for message in messages %}
             <li>{{ message }}</li>
